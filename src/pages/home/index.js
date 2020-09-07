@@ -16,7 +16,7 @@ class HomeIndex extends React.Component{
   }
   componentDidMount(){
     this.getData();
-    console.log(process.env.REACT_APP_NODE_ENV,'@@@@@@@@@');
+    // console.log(process.env.REACT_APP_NODE_ENV,'@@@@@@@@@');
   }
   async getData(){
     const data = await getCustomerSaleSaleMoney({

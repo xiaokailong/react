@@ -1,0 +1,47 @@
+.login-bg {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  position: relative;
+  background-color: #f0f2f5;
+  background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+}
+.login-form {
+  width: 360px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+}
+.login-logo{
+  text-align: center;
+  color: rgba(0,0,0,.85);
+  font-weight: 600;
+  font-size: 28px;
+  font-family: Avenir,helvetica neue,Arial,Helvetica,sans-serif;
+}
+.login-logo img {
+  height: 40px;
+  margin-right: 16px;
+  vertical-align: top;
+}
+.login-logo-desc {
+  margin-top: 12px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+.fan-pro-copyright {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0,0,0,.45);
+}

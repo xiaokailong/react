@@ -106,6 +106,10 @@ module.exports = function(proxy, allowedHost) {
         target:"http://v3-sta.asagroup.cn/",
         changeOrigin: true
       },
+      '/user': {
+        target:"http://v2.api.sta.asagroup.cn/",
+        changeOrigin: true
+      },
     },
     before(app, server) {
       // Keep `evalSourceMapMiddleware` and `errorOverlayMiddleware`

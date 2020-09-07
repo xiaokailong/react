@@ -13,14 +13,15 @@ class UserCenter extends React.Component {
       // dispatch({
       //   type: 'OUTLOGIN',
       // })
-      dispatch(actions.user.outLogin())
+      dispatch(actions.user.logout())
     })
     this.props.history.replace(config.path+"login");
   }
   render() {
     return (
       <div>
-        <div>欢迎：{this.props.state.user.username}</div>
+        <div>用户名：{this.props.state.user.username}</div>
+        <div>token：{this.props.state.user.token}</div>
         <button type="button" onClick={this.outLogin.bind(this)}>安全退出</button>
       </div>
     )

@@ -1,19 +1,22 @@
+import storage from '@/services/Storage'
 let defaultState = {
-  username: localStorage['username'] ? localStorage['username'] : '',
-  isLogin: localStorage['isLogin'] ? localStorage['isLogin'] : false,
+  token: sessionStorage['token'] ? sessionStorage['token'] : '',
+  username: sessionStorage['username'] ? sessionStorage['username'] : '',
+  account: sessionStorage['account'] ? sessionStorage['account'] : '',
 }
-function counterReducer(state=defaultState, action){
+function userReducer(state=defaultState, action){
   switch(action.type){
     case "LOGIN":
-      localStorage['username']=action.data.username;
-      localStorage['isLogin']=true;
+      storage.session.set('token', action.data.token )
+      storage.session.set('username', action.data.username)
+      storage.session.set('account', action.data.account)
       return {...state, ...action.data};
     case "OUTLOGIN":
-      localStorage.clear();
+      sessionStorage.clear();
       return {...state, ...action.data};
     default:
       return state;
   }
 }
 
-export default counterReducer;
+export default userReducer;

@@ -3,7 +3,7 @@ import {Route,Redirect} from 'react-router-dom';
 export function AuthRoute({ component:Component, ...rest }) {
     return (
         <Route {...rest} render={props =>
-            Boolean(localStorage['isLogin']) ? (
+            Boolean(sessionStorage['token']) ? (
                 <Component {...props} />
             ) : (
                 <Redirect

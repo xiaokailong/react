@@ -10,11 +10,11 @@ import * as serviceWorker from './serviceWorker';
 
 function App(){
   return (
-    <React.Fragment>
+    <>
       <Provider store={store}>
         <Layout />
       </Provider>
-    </React.Fragment>
+    </>
   )
 }
 

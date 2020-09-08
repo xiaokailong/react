@@ -102,12 +102,20 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy:{
-      '/asae-oer': {
-        target:"http://v3-sta.asagroup.cn/",
-        changeOrigin: true
-      },
       '/user': {
         target:"http://v2.api.sta.asagroup.cn/",
+        changeOrigin: true
+      },
+      '/baseservice': {
+        target: 'http://base-api-test.devcloud.asagroup.cn/',
+        changeOrigin: true
+      },
+      '/public': {
+        target: 'http://f.devcloud.asagroup.cn/',
+        changeOrigin: true
+      },
+      '/api': {
+        target: 'http://f.devcloud.asagroup.cn/',
         changeOrigin: true
       },
     },

@@ -11,11 +11,10 @@ import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import DefaultLayout from './DefaultLayout'
 import MainLayout from './MainLayout'
-import routers from '@/router'
+// import routers from '@/router'
 // const whiteList = ['/login', '/user']
 class Layout extends React.Component{
   render() {
-    console.log(routers);
     return (
       <Router>
         <MainLayout content={<DefaultLayout />}></MainLayout>

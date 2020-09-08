@@ -11,6 +11,11 @@ const homeRouter = [
     component: lazy(() => import("@/pages/login")),
     meta: "登录",
   },
+  {
+    path: "/test/staff",
+    component: lazy(() => import("@/pages/test/staff")),
+    meta: "员工列表",
+  },
 ];
 
 export default homeRouter;

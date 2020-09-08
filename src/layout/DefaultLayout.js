@@ -8,7 +8,7 @@ exact :完全匹配路由
 Redirect:路由重定向
 */
 import React, {Suspense} from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {AuthRoute} from '@/routes/private'
 import routers from '@/router'
 
@@ -30,7 +30,7 @@ class DefaultLayout extends React.Component{
               }
             })
           }
-          <Redirect to={routers[0].path}></Redirect>
+          {/* <Redirect to={routers[0].path}></Redirect> */}
         </Suspense>
       </Switch>
     )

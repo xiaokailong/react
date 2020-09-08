@@ -23,7 +23,7 @@ export default [
   {
     "id": "2",
     "name": "数据管理",
-    "url": "/data",
+    "url": "/test",
     "parent_id": "0",
     "icon_url": "stats-bars",
   },
@@ -38,6 +38,13 @@ export default [
     "id": "22",
     "name": "新闻列表",
     "url": "/news",
+    "parent_id": "2",
+    "icon_url": "",
+  },
+  {
+    "id": "23",
+    "name": "员工列表",
+    "url": "/test/staff",
     "parent_id": "2",
     "icon_url": "",
   },
@@ -65,7 +72,7 @@ export default [
   {
     "id": "4",
     "name": "用户管理",
-    "url": "/center",
+    "url": "/ucenter",
     "parent_id": "0",
     "icon_url": "stats-bars",
   },
@@ -79,7 +86,7 @@ export default [
   {
     "id": "42",
     "name": "账户设置",
-    "url": "/user/config",
+    "url": "/ucenter/config",
     "parent_id": "4",
     "icon_url": "",
   },

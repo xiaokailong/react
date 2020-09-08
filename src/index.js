@@ -7,6 +7,7 @@ import Layout from './layout';
 import {Provider} from 'react-redux';
 import store from './store/reducers'
 import * as serviceWorker from './serviceWorker';
+// import { ConfigProvider } from 'antd';
 
 function App(){
   return (

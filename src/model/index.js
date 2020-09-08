@@ -1,14 +1,18 @@
 import {
   API_LOGIN,
-  API_LOGOUT,
   API_MENUS,
-  API_JAVA_CUSTOMERSALE_SALEMONEY,
+  API_AUTH_AUTHUSER,
+  API_AUTH_USEUSER,
+  API_AUTH_AUTHUSER_ID,
+  API_AUTH_LOCK_ID,
+  API_AUTH_NORMAL_ID,
 } from '@/api'
 import { responseFilter } from './middleware/responseFilter'
 import { emitError } from './middleware/emitError'
 import ORM from '@/services/ORM'
 
-const resFliter = responseFilter('data.data')
+const resFliter = responseFilter('data.result')
+const resFliter1 = responseFilter('data.data')
 const error = emitError()
 const app = new ORM()
 
@@ -16,11 +20,14 @@ const app = new ORM()
 // 登录
 export const postLogin = app.post(API_LOGIN)
 
-// 退出
-export const postLogout = app.post(API_LOGOUT)
-
 // 菜单
-export const getMenuList = app.get(API_MENUS, error, resFliter)
+export const getMenuList = app.get(API_MENUS, error, resFliter1)
 
-// java统计接口20200819
-export const getCustomerSaleSaleMoney = app.get(API_JAVA_CUSTOMERSALE_SALEMONEY, error, resFliter)
+// 员工
+export const getAuthAuthUser = app.get(API_AUTH_AUTHUSER, error, resFliter);
+export const getAuthUseuser = app.get(API_AUTH_USEUSER, error, resFliter);
+export const postAuthAuthUser = app.post(API_AUTH_AUTHUSER, error, resFliter);
+export const getAuthAuthUserById = app.get(API_AUTH_AUTHUSER_ID, error, resFliter);
+export const putAuthAuthUserById = app.put(API_AUTH_AUTHUSER_ID, error, resFliter);
+export const putAuthLockById = app.put(API_AUTH_LOCK_ID, error, resFliter);
+export const putAuthNormalById = app.put(API_AUTH_NORMAL_ID, error, resFliter);

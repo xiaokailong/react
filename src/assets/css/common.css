@@ -15,7 +15,7 @@ body {
   justify-content: space-between;
   padding: 16px 22px;
   line-height: 32px;
-  border-bottom: 1px solid rgba(0,0,0,.25);
+  /* border-bottom: 1px solid rgba(0,0,0,.25); */
   cursor: pointer;
 }
 .logo img {
@@ -26,7 +26,7 @@ body {
 h1 {
   display: inline-block;
   height: 32px;
-  color: #fff;
+  color: #333;
   font-weight: 600;
   font-size: 18px;
   line-height: 32px;
@@ -84,6 +84,6 @@ h1 {
   margin: 16px;
 }
 
-.site-layout .site-layout-background {
+.site-layout .site-layout-background, .site-sider {
   background: #fff;
 }

@@ -2,7 +2,7 @@ import { lazy } from "react";
 
 const goodsRouter = {
   path: "/goods", 
-  component: lazy(() => import("@/layout/MainLayout")),
+  component: lazy(() => import("@/pages/goods")),
   routes: [
     {
       path: "/goods/index",

@@ -654,3 +654,42 @@ export function sumColumn(data, target) {
   }
   return 0
 }
+
+/**
+ * 一级数组根据父ID转为多级
+ */
+
+export const jsonTree = (
+  data,
+  { id = 'id', pid = 'pid', children = 'children' } = {},
+) => {
+  const idMap = {};
+  const treeData = [];
+  data.forEach((v) => {
+    idMap[v[id]] = v;
+  });
+  data.forEach((v) => {
+    const parent = idMap[v[pid]];
+    if (parent) {
+      if (!parent[children]) {
+        parent[children] = [];
+      }
+      v.__parent__ = parent;
+      parent[children].push(v);
+    } else {
+      treeData.push(v);
+    }
+  });
+  return treeData;
+};
+
+/**
+ * 数组引用转对象引用
+ */
+export function arrayTransformObject(mapKey, data) {
+  const o = {};
+  data.forEach((item) => {
+    o[item[mapKey]] = item;
+  });
+  return o;
+}

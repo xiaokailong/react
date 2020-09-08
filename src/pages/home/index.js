@@ -1,9 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import CounterComponent from '@/components/counter';
 import actions from '@/store/actions';
-import {getCustomerSaleSaleMoney} from '@/model';
+import {getMenuList} from '@/model';
 import { Button } from 'antd';
 
 class HomeIndex extends React.Component{
@@ -19,13 +18,8 @@ class HomeIndex extends React.Component{
     // console.log(process.env.REACT_APP_NODE_ENV,'@@@@@@@@@');
   }
   async getData(){
-    const data = await getCustomerSaleSaleMoney({
-      type: 'money',
-      date: '2020-08'
-    })
-
-    this.setState({data: data.datas})
-    console.log(this.state.data);
+    const {datas} = await getMenuList()
+    this.setState({data: datas})
   }
   incCount () {
     // this.props.dispatch((dispatch, getState)=>{
@@ -71,12 +65,6 @@ class HomeIndex extends React.Component{
             )
           })
         } */}
-        <div><Link to="/">首页</Link></div>
-        <div><Link to="/news">新闻页面</Link></div>
-        <div><Link to="/goods">商品页面</Link></div>
-        <div><Link to="/login">登录</Link></div>
-        <div><Link to="/user">个人中心</Link></div>
-        <br /><br /><br /><br />
         <CounterComponent></CounterComponent>
         计算器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.counter.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
       </div>

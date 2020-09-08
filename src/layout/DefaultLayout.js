@@ -9,7 +9,8 @@ Redirect:路由重定向
 */
 import React, {Suspense} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
-// import {AuthRoute} from '@/routes/private'
+import {AuthRoute} from '@/routes/private'
+import routers from '@/router'
 
 class DefaultLayout extends React.Component{
   render() {
@@ -17,15 +18,19 @@ class DefaultLayout extends React.Component{
       <Switch>
         <Suspense fallback={<React.Fragment/>}>
           {
-            this.props.routes.map((route, key) => {
-              return <Route key={key} path={route.path} render={
-                props => (
-                  <route.component {...props} routes={route.routes} />
-                )
-              } />
+            routers.map((route, key) => {
+              if(route.auth) {
+                return <AuthRoute key={key} path={route.path} component={route.component} />
+              } else {
+                return <Route exact={route.exact} key={key} path={route.path} render={
+                  props => (
+                    <route.component {...props} routes={route.routes} />
+                  )
+                } />
+              }
             })
           }
-          <Redirect to='{this.props.routes[0].path}'></Redirect>
+          <Redirect to={routers[0].path}></Redirect>
         </Suspense>
       </Switch>
     )

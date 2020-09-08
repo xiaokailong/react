@@ -7,33 +7,19 @@ Link:跳转页面，相当于vue里面的router-link
 exact :完全匹配路由
 Redirect:路由重定向
 */
-import React, {Suspense} from 'react';
-import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
-import {AuthRoute} from '@/routes/private'
+import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
+import DefaultLayout from './DefaultLayout'
+import MainLayout from './MainLayout'
 import routers from '@/router'
-
+// const whiteList = ['/login', '/user']
 class Layout extends React.Component{
   render() {
+    console.log(routers);
     return (
       <Router>
-        <Switch>
-          <Suspense fallback={<React.Fragment/>}>
-            {
-              routers.map((route, key) => {
-                if(route.auth) {
-                  return <AuthRoute key={key} path={route.path} component={route.component} />
-                } else {
-                  return <Route exact={route.exact} key={key} path={route.path} render={
-                    props => (
-                      <route.component {...props} routes={route.routes} />
-                    )
-                  } />
-                }
-              })
-            }
-            {/* <Redirect from='/' to='/home'></Redirect> */}
-          </Suspense>
-        </Switch>
+        <MainLayout content={<DefaultLayout />}></MainLayout>
+        {/* <DefaultLayout /> */}
       </Router>
     )
   }

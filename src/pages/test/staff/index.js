@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { enums } from '@/utils/assist'
 import EventBus from '@/services/EventBus'
 import {getAuthAuthUser} from '@/model';
-import { Form, Input, Button, Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
+import { Form, Input, Button, Table, Tooltip, Tag, Modal, ConfigProvider } from 'antd';
+import StaffEdit from './StaffEdit';
 class StaffList extends React.Component{
   constructor(){
     super();
@@ -12,16 +13,26 @@ class StaffList extends React.Component{
       data: [],
       total: 500,
       loading: false,
+      modalVisible: false,
+      modalTitle: '',
+      modalCurrentId: null,
     };
-    this.num = 0;
+    this.query={
+      name: '',
+      page_no: 1,
+      page_size: 25,
+    };
   }
   componentDidMount(){
-    this.getData();
-    // console.log(process.env.REACT_APP_NODE_ENV,'@@@@@@@@@');
+    this.fetchData();
+    EventBus.emit('success','数据拉取成功！')
   }
-  async getData(){
+  handleSearch(){
+    this.fetchData({...this.query});
+  }
+  async fetchData(query={}){
     this.setState({loading: true})
-    const {authuser_list} = await getAuthAuthUser()
+    const {authuser_list} = await getAuthAuthUser({...query})
     const data = authuser_list.map(item=>({
       key: item.id,
       account: item.account,
@@ -33,25 +44,55 @@ class StaffList extends React.Component{
       status: item.status,
       // user_role_list: []
     }))
-    EventBus.emit('success','数据拉取成功！')
     this.setState({data: data, loading: false})
   }
   changePage = page => {
-    console.log(page);
+    this.query.page_no = page;
+    this.handleSearch();
+  };
+  changePageSize = (pageSize, current) => {
+    this.query.page_no = current;
+    this.query.page_size = pageSize;
+    this.handleSearch();
+  };
+  handleAdd(){
     this.setState({
-      current: page,
+      modalTitle: '新增',
+      modalVisible: true,
+    });
+  }
+  handleEdit(item, e) {
+    this.setState({
+      modalCurrentId: item.id,
+      modalTitle: '编辑',
+      modalVisible: true,
+    }, ()=>{
+      // console.log(this.state.modalCurrentId,'@');
+    });
+  }
+  handleDelete(item){
+    console.log(item,'222222222222');
+  }
+  handleOk = e => {
+    this.setState({
+      modalCurrentId: null,
+      modalVisible: false,
     });
   };
-  handleSearch(){
-    console.log(111);
-  }
+
+  handleCancel = e => {
+    this.setState({
+      modalCurrentId: null,
+      modalVisible: false,
+    });
+  };
   render(){
     // 表格列项
     const columns = [
       {
         title: '#',
         width: 40,
-        render: (text,render,index) => <>{index}</>,
+        render: (text,render,index) => <>{index+1}</>,
       },
       {
         title: 'ID',
@@ -92,34 +133,52 @@ class StaffList extends React.Component{
           </Tooltip>
         ),
       },
+      {
+        title: '操作',
+        align: 'right',
+        render: (text,render) => <>
+          <Button type="link" onClick={this.handleEdit.bind(this, render)}>编辑</Button>
+          <Button type="link" onClick={this.handleDelete.bind(this, render)}>删除</Button>
+        </>,
+      },
     ];
     // 表格分页属性
     const paginationProps = {
       size: "default",
+      showSizeChanger: false,
       showTotal: () => `共500条`,
-      pageSize: 25,
-      current: 1,
+      pageSize: this.query.page_size,
+      current: this.query.page_no,
       total: 500,
-      // onShowSizeChange: (current,pageSize) => this.changePageSize(pageSize,current),
+      onShowSizeChange: (current,pageSize) => this.changePageSize(pageSize,current),
       onChange: (current) => this.changePage(current),
     };
     return (
       <ConfigProvider locale={zhCN}>
-        <Form layout="inline">
+        <Form layout="inline" className="search-bar">
           <Form.Item name="username">
-            <Input placeholder="员工姓名" allowClear />
+            <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" onClick={this.handleSearch.bind(this)}>搜索</Button>
           </Form.Item>
+          <Form.Item className="fe-fr" style={{float: 'right !important'}}>
+            <Button type="primary" onClick={this.handleAdd.bind(this)}>新增</Button>
+          </Form.Item>
         </Form>
+        {
+          this.state.modalVisible && 
+          <Modal title={this.state.modalTitle} width={800} visible={this.state.modalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+            <StaffEdit title="传值" id={this.state.modalCurrentId} />
+          </Modal>
+        }
         <Table 
           dataSource={this.state.data} 
           columns={columns} 
           size="small" 
           loading={this.state.loading}
           pagination={paginationProps}
-          scroll={{ y: 746 }}
+          scroll={{ y: 738 }}
         />
       </ConfigProvider>
     )

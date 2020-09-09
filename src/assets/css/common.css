@@ -71,6 +71,24 @@ h1 {
   vertical-align: -1px;
 }
 
+.fe-fl {
+  float: left;
+}
+
+.fe-fr {
+  float: right;
+}
+
+.search-bar .ant-form-item {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.search-bar .fe-fr {
+  position: absolute;
+  right: 8px;
+}
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;

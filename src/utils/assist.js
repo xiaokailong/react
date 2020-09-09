@@ -1,5 +1,6 @@
 import pathToRegexp from 'path-to-regexp'
 import moment from 'moment'
+import appEnums from '@/enums'
 /**
  * 查找父组件
  * @export
@@ -693,3 +694,18 @@ export function arrayTransformObject(mapKey, data) {
   });
   return o;
 }
+/**
+ * 获取枚举
+ */
+export const getEnums = (key) => {
+  return Object.keys(appEnums[key] || {}).map((item) => ({
+    value: item,
+    text: appEnums[key][item],
+    label: appEnums[key][item],
+  }));
+};
+
+export const enums = (str) => {
+  return appEnums[str];
+  // return get(appEnums, str, '');
+};

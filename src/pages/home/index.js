@@ -50,14 +50,6 @@ class HomeIndex extends React.Component{
   render() {
     return (
       <div>
-        <i className="iconfont icon-logo"></i>
-        {/* {
-          this.state.data.map((item,index)=>{
-            return (
-              <div key={index}>{item.customer_name}</div>
-            )
-          })
-        } */}
         <CounterComponent></CounterComponent>
         计算器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.counter.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
       </div>

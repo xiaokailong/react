@@ -72,25 +72,25 @@ class LoginPage extends React.Component {
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: '请输入用户名!',
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" onChange={(e)=>{this.setState({username: e.target.value})}} />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" onChange={(e)=>{this.setState({username: e.target.value})}} />
           </Form.Item>
           <Form.Item
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Please input your Password!',
+                message: '请输入密码!',
               },
             ]}
           >
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Password"
+              placeholder="密码"
               onChange={(e)=>{this.setState({password: e.target.value})}}
             />
           </Form.Item>

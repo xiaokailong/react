@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getAuthAuthUser} from '@/model';
-import { Table, Pagination, Tooltip } from 'antd';
+import { Form, Input, Button, Table, Pagination, Tooltip } from 'antd';
 
 const columns = [
   {
@@ -17,7 +17,7 @@ const columns = [
   {
     title: '姓名',
     dataIndex: 'name',
-    render: (text,render) => <a>{text}</a>,
+    render: (text,render) => <span>{text}</span>,
   },
   {
     title: '手机号',
@@ -77,11 +77,25 @@ class StaffList extends React.Component{
       // user_role_list: []
     }))
     this.setState({data: data, loading: false})
-    console.log(this.state.total,'@@@@@@@@@@');
   }
   render(){
     return (
       <div>
+        <Form name="horizontal_login" layout="inline">
+          <Form.Item name="username">
+            <Input placeholder="员工姓名" />
+          </Form.Item>
+          <Form.Item shouldUpdate>
+            {() => (
+              <Button
+                type="primary"
+                htmlType="submit"
+              >
+                搜索
+              </Button>
+            )}
+          </Form.Item>
+        </Form>
         <Table 
           dataSource={this.state.data} 
           columns={columns} 

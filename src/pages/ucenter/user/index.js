@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from 'react-redux';
-import config from '../../assets/js/conf/config'
-import actions from '../../store/actions';
+import config from '../../../assets/js/conf/config'
+import actions from '../../../store/actions';
 
-class UserCenter extends React.Component {
+class UcenterUser extends React.Component {
   constructor(){
     super()
     this.state={}
@@ -28,4 +28,4 @@ class UserCenter extends React.Component {
   }
 }
 
-export default connect((state)=>({state}))(UserCenter);
+export default connect((state)=>({state}))(UcenterUser);

@@ -31,7 +31,7 @@ class TheMenu extends Component{
     })
   }
   handleClick = e => {
-    // console.log('click ', e);
+    console.log('click ', e);
     // console.log(this.props.history,'@@@@@@@@@@@@@@@@');
     this.setState({
       activeKey: e.key,
@@ -42,6 +42,7 @@ class TheMenu extends Component{
     return (
       <React.Fragment>
         <Menu
+          openKeys={['1','2','3','4']}
           theme={this.state.theme}
           onClick={this.handleClick}
           selectedKeys={[this.state.activeKey]}
@@ -50,7 +51,7 @@ class TheMenu extends Component{
           {
           this.state.data.map(item=>{
             return (
-              <SubMenu key={item.id} title={item.name}>
+              <SubMenu key={item.id} title={item.name} icon={<i className={'iconfont '+item.icon_url}></i>}>
                 {
                   item.children.map(c=>{
                     return (

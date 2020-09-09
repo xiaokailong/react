@@ -66,6 +66,11 @@ h1 {
   }
 }
 
+.iconfont {
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;

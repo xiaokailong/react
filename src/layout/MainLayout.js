@@ -1,10 +1,10 @@
 import React from 'react';
 import { Layout } from 'antd';
 import TheMenu from '@/components/TheMenu'
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons';
+// import {
+//   MenuUnfoldOutlined,
+//   MenuFoldOutlined,
+// } from '@ant-design/icons';
 // import routers from '@/router'
 // import EventBus from '@/services/EventBus'
 const { Header, Sider, Content } = Layout;
@@ -34,10 +34,10 @@ class MainLayout extends React.Component{
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            {/* {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: this.toggle,
-            })}
+            })} */}
           </Header>
           <Content
             className="site-layout-background"

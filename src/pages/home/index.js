@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import CounterComponent from '@/components/counter';
 import actions from '@/store/actions';
-import {getAuthAuthUser} from '@/model';
 import { Button } from 'antd';
 
 class HomeIndex extends React.Component{
@@ -14,13 +13,6 @@ class HomeIndex extends React.Component{
     this.num = 0;
   }
   componentDidMount(){
-    this.getData();
-    // console.log(process.env.REACT_APP_NODE_ENV,'@@@@@@@@@');
-  }
-  async getData(){
-    const {authuser_list} = await getAuthAuthUser()
-    this.setState({data: authuser_list})
-    console.log(this.state.data,'@@@@@@@@@@');
   }
   incCount () {
     // this.props.dispatch((dispatch, getState)=>{

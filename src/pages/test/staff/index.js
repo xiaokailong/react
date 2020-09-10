@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { enums } from '@/utils/assist'
+import { relativeTime } from '@/utils/dayjs'
 import EventBus from '@/services/EventBus'
 import {
   getAuthAuthUser,
@@ -8,7 +9,7 @@ import {
   putAuthNormalById,
 } from '@/model';
 import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
-import { Form, Input, Button, Table, Tooltip, Tag, Switch, Modal, ConfigProvider } from 'antd';
+import { Form, Input, Button, Table, Tooltip, Tag, Switch, Modal, Popconfirm, ConfigProvider } from 'antd';
 import StaffEdit from './StaffEdit';
 class StaffList extends React.Component{
   constructor(){
@@ -29,6 +30,7 @@ class StaffList extends React.Component{
   }
   componentDidMount(){
     this.fetchData();
+    EventBus.emit('setTitle','员工列表')
     EventBus.emit('success','数据拉取成功！')
   }
   handleSearch(){
@@ -56,12 +58,14 @@ class StaffList extends React.Component{
     this.query.page_size = pageSize;
     this.handleSearch();
   };
+  // 新增
   handleAdd(){
     this.setState({
       modalTitle: '新增',
       modalVisible: true,
     });
   }
+  // 编辑
   handleEdit(item, e) {
     this.setState({
       modalCurrentId: item.id,
@@ -71,23 +75,29 @@ class StaffList extends React.Component{
       // console.log(this.state.modalCurrentId,'@');
     });
   }
+  // 删除
   handleDelete(item){
-    console.log(item,'222222222222');
+    try {
+      console.log(item,'删除操作');
+    } catch (err) {
+      console.log(err);
+    }
   }
+  // 模态框确定
   handleOk = e => {
     this.setState({
       modalCurrentId: null,
       modalVisible: false,
     });
   };
-
+  // 模态框取消
   handleCancel = e => {
     this.setState({
       modalCurrentId: null,
       modalVisible: false,
     });
   };
-
+  // 列表锁写/解锁
   async handleStatusChange(status, item, checked) {
     try {
       if(status === 'NORMAL') {
@@ -156,7 +166,7 @@ class StaffList extends React.Component{
         },
         render: text => (
           <Tooltip placement="top" title={text}>
-            {text}
+            {relativeTime(text)}
           </Tooltip>
         ),
       },
@@ -165,7 +175,16 @@ class StaffList extends React.Component{
         align: 'right',
         render: (text,render) => <>
           <Button type="link" onClick={this.handleEdit.bind(this, render)}>编辑</Button>
-          <Button type="link" onClick={this.handleDelete.bind(this, render)}>删除</Button>
+          <Popconfirm
+            placement="bottomRight"
+            title="确认删除该条信息吗？"
+            onConfirm={this.handleDelete.bind(this, render)}
+            onCancel={this.handleCancel}
+            okText="确认"
+            cancelText="取消"
+          >
+            <Button type="link">删除</Button>
+          </Popconfirm>
         </>,
       },
     ];

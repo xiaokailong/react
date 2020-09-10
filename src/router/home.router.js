@@ -4,17 +4,18 @@ const homeRouter = [
   {
     path: "/", 
     component: lazy(() => import("@/pages/home")),
+    title: '首页',
     exact: true,
   },
   {
     path: "/login",
     component: lazy(() => import("@/pages/login")),
-    meta: "登录",
+    title: "登录",
   },
   {
     path: "/test/staff",
     component: lazy(() => import("@/pages/test/staff")),
-    meta: "员工列表",
+    title: "员工列表",
     auth: true,
   },
 ];

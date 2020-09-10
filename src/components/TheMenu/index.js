@@ -20,8 +20,8 @@ class TheMenu extends Component{
     this.getData();
   }
   async getData(){
-    // const {datas} = await getMenuList()
-    // const data = jsonTree(datas,{pid: 'parent_id'})
+    // const {menu_list} = await getMenuList()
+    // const data = jsonTree(menu_list,{pid: 'parent_id'})
     const data = jsonTree(MenuMockData,{pid: 'parent_id'})
     // this.setState({data})
     this.setState((state)=>{

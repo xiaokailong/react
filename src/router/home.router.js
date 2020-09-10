@@ -15,6 +15,7 @@ const homeRouter = [
     path: "/test/staff",
     component: lazy(() => import("@/pages/test/staff")),
     meta: "员工列表",
+    auth: true,
   },
 ];
 

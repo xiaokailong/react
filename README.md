@@ -1,10 +1,12 @@
 ## TODO List：
-1.路由认证权限
+1.路由认证权限（已完成）
 2.路由模块化
 3.页面模板
 4.面包屑
 5.混合
 6.Table和Select组件
+7.路由用EventBus实现
+8.hooks和HOC
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

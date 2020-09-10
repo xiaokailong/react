@@ -8,6 +8,7 @@ class GoodsIndex extends React.Component{
     console.log(this.props,'!!!!!!!!!!');
     return (
       <div>
+        <h3>商品页用来测试父子嵌套路由</h3>
         <button type="button" onClick={this.props.history.go.bind(this,-1)}>返回</button>
         <GoodsNav></GoodsNav><br /><br /><br /><br />
         <div>

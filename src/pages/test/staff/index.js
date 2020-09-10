@@ -2,16 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { enums } from '@/utils/assist'
 import EventBus from '@/services/EventBus'
-import {getAuthAuthUser} from '@/model';
+import {
+  getAuthAuthUser,
+  putAuthLockById,
+  putAuthNormalById,
+} from '@/model';
 import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
-import { Form, Input, Button, Table, Tooltip, Tag, Modal, ConfigProvider } from 'antd';
+import { Form, Input, Button, Table, Tooltip, Tag, Switch, Modal, ConfigProvider } from 'antd';
 import StaffEdit from './StaffEdit';
 class StaffList extends React.Component{
   constructor(){
     super();
     this.state={
       data: [],
-      total: 500,
+      total: 318,
       loading: false,
       modalVisible: false,
       modalTitle: '',
@@ -31,20 +35,17 @@ class StaffList extends React.Component{
     this.fetchData({...this.query});
   }
   async fetchData(query={}){
-    this.setState({loading: true})
-    const {authuser_list} = await getAuthAuthUser({...query})
-    const data = authuser_list.map(item=>({
-      key: item.id,
-      account: item.account,
-      create_time: item.create_time,
-      device_type: item.device_type,
-      id: item.id,
-      mobile: item.mobile,
-      name: item.name,
-      status: item.status,
-      // user_role_list: []
-    }))
-    this.setState({data: data, loading: false})
+    try {
+      this.setState({loading: true})
+      const {authuser_list} = await getAuthAuthUser({...query})
+      const data = authuser_list.map(item=>({
+        ...item,
+        key: item.id,
+      }))
+      this.setState({data, loading: false})
+    } catch (err) {
+      console.log(err);
+    }
   }
   changePage = page => {
     this.query.page_no = page;
@@ -86,6 +87,21 @@ class StaffList extends React.Component{
       modalVisible: false,
     });
   };
+
+  async handleStatusChange(status, item, checked) {
+    try {
+      if(status === 'NORMAL') {
+        await putAuthLockById({id: item.id})
+      } else {
+        await putAuthNormalById({id: item.id})
+      }
+      EventBus.emit('success', '操作成功!');
+      this.handleSearch();
+    } catch (err) {
+      EventBus.emit('error', '操作失败!');
+      console.log(err);
+    }
+  }
   render(){
     // 表格列项
     const columns = [
@@ -115,11 +131,22 @@ class StaffList extends React.Component{
       {
         title: '状态',
         dataIndex: 'status',
+        width: 80,
         render: (text,render) => <Tag color={enums(`USER_STATUS_COLOR`)[text]}>{enums(`USER_STATUS`)[text]}</Tag>,
       },
       {
-        title: '登录设备',
-        dataIndex: 'device_type',
+        title: '权限',
+        dataIndex: 'user_role_list',
+        width: 280,
+        render: (user_role_list) => {
+          return user_role_list.length > 0 && user_role_list.map(item=><Tag color="geekblue" key={item.id}>{item.name}</Tag>)
+        }
+      },
+      {
+        title: '锁定/解锁',
+        dataIndex: 'status',
+        width: 80,
+        render: (status,render) => <Switch checkedChildren="正常" unCheckedChildren="锁定" checked={status === 'NORMAL'} onChange={this.handleStatusChange.bind(this,status,render)} />
       },
       {
         title: '创建时间',
@@ -146,32 +173,26 @@ class StaffList extends React.Component{
     const paginationProps = {
       size: "default",
       showSizeChanger: false,
-      showTotal: () => `共500条`,
+      showTotal: () => `共${this.state.total}条`,
       pageSize: this.query.page_size,
       current: this.query.page_no,
-      total: 500,
+      total: this.state.total,
       onShowSizeChange: (current,pageSize) => this.changePageSize(pageSize,current),
       onChange: (current) => this.changePage(current),
     };
     return (
       <ConfigProvider locale={zhCN}>
         <Form layout="inline" className="search-bar">
-          <Form.Item name="username">
+          <Form.Item>
             <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" onClick={this.handleSearch.bind(this)}>搜索</Button>
           </Form.Item>
-          <Form.Item className="fe-fr" style={{float: 'right !important'}}>
+          <Form.Item className="fe-fr">
             <Button type="primary" onClick={this.handleAdd.bind(this)}>新增</Button>
           </Form.Item>
         </Form>
-        {
-          this.state.modalVisible && 
-          <Modal title={this.state.modalTitle} width={800} visible={this.state.modalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
-            <StaffEdit title="传值" id={this.state.modalCurrentId} />
-          </Modal>
-        }
         <Table 
           dataSource={this.state.data} 
           columns={columns} 
@@ -180,6 +201,12 @@ class StaffList extends React.Component{
           pagination={paginationProps}
           scroll={{ y: 738 }}
         />
+        {
+          this.state.modalVisible && 
+          <Modal title={this.state.modalTitle} width={800} visible={this.state.modalVisible} footer={null} onOk={this.handleOk} onCancel={this.handleCancel}>
+            <StaffEdit title="传值" id={this.state.modalCurrentId} />
+          </Modal>
+        }
       </ConfigProvider>
     )
   }

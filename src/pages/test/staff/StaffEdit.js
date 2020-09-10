@@ -10,10 +10,13 @@ class StaffEdit extends Component{
       name: '',
       mobile: '',
       account: '',
+      _password: '',
+      role_ids: [],
     }
   }
   componentDidMount(){
     this.fetchData();
+    // const key = this.state.password === '123456' ? '_password' : 'password';
   }
   async fetchData(){
     if(this.props.id) {
@@ -29,7 +32,7 @@ class StaffEdit extends Component{
   render() {
     return (
       <>
-        <Form>
+        <Form labelCol={{ span: 2 }} wrapperCol={{span: 24}}>
           <Form.Item label="姓名">
             <Input value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}} />
           </Form.Item>
@@ -40,12 +43,12 @@ class StaffEdit extends Component{
             <Input value={this.state.account} />
           </Form.Item>
           <Form.Item label="密码">
-            <Input />
+            <Input value={this.state._password} />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 2, span: 24 }}>
+            <Button type="primary" onClick={()=>this.props.saveClick('这是子组件传递过来的值')}>保存</Button>
           </Form.Item>
         </Form>
-        <p>{this.state.name}</p>
-        <p>sadfasdf----{this.props.id}</p>
-        <Button type="primary" onClick={()=>this.props.saveClick('这是子组件传递过来的值')}>点击向父组件传值</Button>
       </>
     )
   }

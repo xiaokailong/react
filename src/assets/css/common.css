@@ -66,6 +66,18 @@ h1 {
   }
 }
 
+.ant-layout {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ant-input, 
+.ant-btn, 
+.ant-table.ant-table-small {
+  /* font-size: 12px !important; */
+}
+
+
 .iconfont {
   margin-right: 5px;
   vertical-align: -1px;

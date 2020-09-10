@@ -34,12 +34,12 @@ class StaffList extends React.Component{
     EventBus.emit('success','数据拉取成功！')
   }
   handleSearch(){
-    this.fetchData({...this.query});
+    this.fetchData({...this.query, account: this.query.name});
   }
-  async fetchData(query={}){
+  async fetchData(query=this.query){
     try {
       this.setState({loading: true})
-      const {authuser_list} = await getAuthAuthUser({...query})
+      const {authuser_list} = await getAuthAuthUser({...query, account: query.name})
       const data = authuser_list.map(item=>({
         ...item,
         key: item.id,
@@ -89,6 +89,7 @@ class StaffList extends React.Component{
       modalCurrentId: null,
       modalVisible: false,
     });
+    this.handleSearch();
   };
   // 模态框取消
   handleCancel = e => {
@@ -203,7 +204,7 @@ class StaffList extends React.Component{
       <ConfigProvider locale={zhCN}>
         <Form layout="inline" className="search-bar">
           <Form.Item>
-            <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} />
+            <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} onPressEnter={this.handleSearch.bind(this)} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" onClick={this.handleSearch.bind(this)}>搜索</Button>
@@ -223,7 +224,7 @@ class StaffList extends React.Component{
         {
           this.state.modalVisible && 
           <Modal title={this.state.modalTitle} width={800} visible={this.state.modalVisible} footer={null} onOk={this.handleOk} onCancel={this.handleCancel}>
-            <StaffEdit title="传值" id={this.state.modalCurrentId} />
+            <StaffEdit title="传值" id={this.state.modalCurrentId} onOk={this.handleOk} />
           </Modal>
         }
       </ConfigProvider>

@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import actions from '../../store/actions';
-import EventBus from '@/services/EventBus';
 import Css from './login.css'
 
 class LoginPage extends React.Component {
@@ -15,7 +14,6 @@ class LoginPage extends React.Component {
     }
   }
   componentDidMount(){
-    EventBus.emit('info','为了方便演示，用户名密码可随意输入！')
     if(this.props.location.state){
       console.log("从"+this.props.location.state.from.pathname+"页面跳转而来");
     }

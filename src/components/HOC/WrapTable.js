@@ -1,5 +1,4 @@
 import React from "react";
-import { get } from "lodash";
 
 /**
  * 表格组件包装函数 统一操作数据请求,分页,权限校验
@@ -60,7 +59,7 @@ const WrapTable = (TableComponent, AjaxData, rightCode) =>
             ...item,
             key: item.id,
           }))
-          const current = get(res, "data.pager.pageIndex", 1);
+          const current = page.page_no;
           this.setState(
             {
               dataSource,

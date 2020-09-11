@@ -30,7 +30,6 @@ class StaffList extends React.Component{
   }
   componentDidMount(){
     this.fetchData();
-    EventBus.emit('setTitle','员工列表')
     EventBus.emit('success','数据拉取成功！')
   }
   handleSearch(){

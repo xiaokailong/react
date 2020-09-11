@@ -11,6 +11,7 @@ import React, {Suspense} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {AuthRoute} from '@/utils/private'
 import routers from '@/router'
+import EventBus from '@/services/EventBus'
 
 class DefaultLayout extends React.Component{
   render() {
@@ -20,12 +21,13 @@ class DefaultLayout extends React.Component{
           {
             routers.map((route, key) => {
               if(route.auth) {
-                return <AuthRoute key={key} path={route.path} component={route.component} />
+                return <AuthRoute key={key} path={route.path} title={route.title} component={route.component} />
               } else {
                 return <Route exact={route.exact} key={key} path={route.path} render={
-                  props => (
-                    <route.component {...props} routes={route.routes} />
-                  )
+                  props => {
+                    EventBus.emit('setTitle', route.title)
+                    return <route.component {...props} routes={route.routes} />
+                  }
                 } />
               }
             })

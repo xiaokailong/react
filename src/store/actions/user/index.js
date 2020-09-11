@@ -29,6 +29,6 @@ export function login(payload){
 
 export function logout(){
   return {
-    type: 'OUTLOGIN',
+    type: 'LOGOUT',
   }
 }

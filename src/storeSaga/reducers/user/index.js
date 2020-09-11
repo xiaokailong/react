@@ -7,7 +7,7 @@ function userReducer(state=defaultState, action){
     case "LOGIN":
       storage.session.set('token', action.data.token )
       return {...state, ...action.data};
-    case "OUTLOGIN":
+    case "LOGOUT":
       sessionStorage.clear();
       return {...state, ...action.data};
     default:

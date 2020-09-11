@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
     this.props.dispatch((dispatch,getState)=>{
       dispatch(actions.user.login({account:this.state.username,password:this.state.password,success:(res)=>{
         if (res.data.code === 100000){
-          this.props.history.goBack();
+          this.props.history.go(-1);
         }
       }}))
     })

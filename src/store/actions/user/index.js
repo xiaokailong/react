@@ -9,14 +9,14 @@ export function login(payload){
   return (dispatch)=>{
     postLogin(payload).then(res=>{
       if (res.data.code === 100000) {
-        const dataTmp = {
+        const data = {
           token: '',
         }
-        dataTmp.token = res.data.result.token
+        data.token = res.data.result.token
         EventBus.emit('success', '登录成功！')
         dispatch({
           type:"LOGIN",
-          data:dataTmp
+          data
         });
         payload.success(res);
       } else {

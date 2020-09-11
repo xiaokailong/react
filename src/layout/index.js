@@ -17,7 +17,7 @@ class Layout extends React.Component{
   render() {
     return (
       <Router>
-        <MainLayout content={<DefaultLayout />}></MainLayout>
+        <MainLayout content={<DefaultLayout />} />
         {/* <DefaultLayout /> */}
       </Router>
     )

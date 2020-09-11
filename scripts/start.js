@@ -3,7 +3,7 @@
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
-process.env.REACT_APP_APP_NAME = 'React系统架构'; // APP名称
+process.env.REACT_APP_APP_NAME = 'Fan React Pro'; // APP名称
 process.env.REACT_APP_ROUTER_MODE = 'history'; // 路由模式
 process.env.REACT_APP_BASE_URL = ''; // 基础URL
 process.env.REACT_APP_BASE_IMAGE_URL = ''; // 图片的基础URL

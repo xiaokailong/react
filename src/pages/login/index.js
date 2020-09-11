@@ -27,17 +27,6 @@ class LoginPage extends React.Component {
       alert("密码不能为空");
       return;
     }
-    // this.props.dispatch((dispatch, getState)=>{
-    //   // dispatch({
-    //   //   type: 'LOGIN',
-    //   //   data: {
-    //   //     username: this.state.username,
-    //   //     isLogin: true,
-    //   //   }
-    //   // })
-    //   dispatch(actions.user.login({username: this.state.username, password: this.state.password}))
-    //   console.log(getState());
-    // })
     this.props.dispatch((dispatch,getState)=>{
       dispatch(actions.user.login({account:this.state.username,password:this.state.password,success:(res)=>{
         if (res.data.code === 100000){

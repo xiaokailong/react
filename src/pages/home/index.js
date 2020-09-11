@@ -1,32 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CounterComponent from '@/components/counter';
-import actions from '@/store/actions';
+import actions from '@/store/actions';    // redux-thunk
+// import actions from '@/storeSaga/actions';    // redux-saga
 import { Button } from 'antd';
 
 class HomeIndex extends React.Component{
   constructor() {
     super();
-    this.state={
-      data: []
-    };
+    this.state={};
     this.num = 0;
   }
   componentDidMount(){
   }
   incCount () {
-    // this.props.dispatch((dispatch, getState)=>{
-    //   dispatch({
-    //     type: 'INC',
-    //     data: {
-    //       count: ++this.num
-    //     }
-    //   })
-    //   console.log(getState());
-    // })
+    // redux-thunk  写法
     this.props.dispatch((dispatch, getState) => {
-      dispatch(actions.counter.incCount({count: ++this.num}));
+      dispatch(actions.home.incCount({count: ++this.num}));
     })
+
+    // redux-saga  写法
+    // this.props.dispatch(actions.home.incCount({count: ++this.num}))
   }
   decCount () {
     // this.props.dispatch({
@@ -43,15 +37,20 @@ class HomeIndex extends React.Component{
     //     }
     //   })
     // })
+
+    // redux-thunk  写法
     this.props.dispatch((dispatch, getState) => {
-      dispatch(actions.counter.decCount({count: --this.num}));
+      dispatch(actions.home.decCount({count: --this.num}));
     })
+
+    // redux-saga  写法
+    // this.props.dispatch(actions.home.decCount({count: --this.num}))
   }
   render() {
     return (
       <div>
         <CounterComponent></CounterComponent>
-        计算器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.counter.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
+        计算器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.home.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
       </div>
     )
   }

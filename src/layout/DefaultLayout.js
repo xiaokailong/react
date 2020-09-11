@@ -9,7 +9,7 @@ Redirect:路由重定向
 */
 import React, {Suspense} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {AuthRoute} from '@/routes/private'
+import {AuthRoute} from '@/utils/private'
 import routers from '@/router'
 
 class DefaultLayout extends React.Component{

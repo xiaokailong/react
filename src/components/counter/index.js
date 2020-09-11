@@ -8,7 +8,7 @@ class CounterComponent extends React.Component{
   }
   render(){
     return (
-      <div>Redux计数器子组件：{this.props.state.counter.count}</div>
+      <div>Redux计数器子组件：{this.props.state.home.count}</div>
     )
   }
 }

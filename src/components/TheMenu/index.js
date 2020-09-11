@@ -31,8 +31,6 @@ class TheMenu extends Component{
     })
   }
   handleClick = e => {
-    console.log('click ', e);
-    // console.log(this.props.history,'@@@@@@@@@@@@@@@@');
     this.setState({
       activeKey: e.key,
     });

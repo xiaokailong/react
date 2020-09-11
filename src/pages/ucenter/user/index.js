@@ -10,9 +10,6 @@ class UcenterUser extends React.Component {
   }
   outLogin(){
     this.props.dispatch((dispatch, getState)=>{
-      // dispatch({
-      //   type: 'OUTLOGIN',
-      // })
       dispatch(actions.user.logout())
     })
     this.props.history.replace(config.path+"login");

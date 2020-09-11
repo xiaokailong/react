@@ -162,6 +162,7 @@ class StaffList extends React.Component{
       {
         title: '创建时间',
         dataIndex: 'create_time',
+        width: 100,
         ellipsis: {
           showTitle: false,
         },

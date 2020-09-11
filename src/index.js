@@ -5,7 +5,8 @@ import './assets/css/index.css';
 import './event-bus' // load events
 import Layout from './layout';
 import {Provider} from 'react-redux';
-import store from './store/reducers'
+import store from './store/reducers';    // redux-thunk
+// import store from './storeSaga/reducers';    // redux-saga
 import * as serviceWorker from './serviceWorker';
 // import { ConfigProvider } from 'antd';
 

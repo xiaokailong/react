@@ -1,4 +1,4 @@
-function counterReducer(state={count: 0}, action){
+function counterReducer(state={count: 10}, action){
   switch(action.type){
     case "INC":
       return {...state, ...action.data};

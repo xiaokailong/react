@@ -16,7 +16,7 @@ class HomeIndex extends React.Component{
   incCount () {
     // redux-thunk  写法
     this.props.dispatch((dispatch, getState) => {
-      dispatch(actions.home.incCount({count: ++this.num}));
+      dispatch(actions.home.incCount({count: ++this.props.state.home.count}));
     })
 
     // redux-saga  写法
@@ -40,7 +40,7 @@ class HomeIndex extends React.Component{
 
     // redux-thunk  写法
     this.props.dispatch((dispatch, getState) => {
-      dispatch(actions.home.decCount({count: --this.num}));
+      dispatch(actions.home.decCount({count: --this.props.state.home.count}));
     })
 
     // redux-saga  写法
@@ -50,7 +50,7 @@ class HomeIndex extends React.Component{
     return (
       <div>
         <CounterComponent></CounterComponent>
-        计算器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.home.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
+        计数器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.home.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
       </div>
     )
   }

@@ -8,8 +8,7 @@ import {
   putAuthLockById,
   putAuthNormalById,
 } from '@/model';
-import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
-import { Form, Input, Button, Table, Tooltip, Tag, Switch, Modal, Popconfirm, ConfigProvider } from 'antd';
+import { Form, Input, Button, Table, Tooltip, Tag, Switch, Modal, Popconfirm } from 'antd';
 import StaffEdit from './StaffEdit';
 class StaffList extends React.Component{
   constructor(){
@@ -117,7 +116,7 @@ class StaffList extends React.Component{
     const columns = [
       {
         title: '#',
-        width: 40,
+        width: 60,
         render: (text,render,index) => <>{index+1}</>,
       },
       {
@@ -155,7 +154,7 @@ class StaffList extends React.Component{
       {
         title: '锁定/解锁',
         dataIndex: 'status',
-        width: 80,
+        width: 120,
         render: (status,render) => <Switch checkedChildren="正常" unCheckedChildren="锁定" checked={status === 'NORMAL'} onChange={this.handleStatusChange.bind(this,status,render)} />
       },
       {
@@ -201,7 +200,7 @@ class StaffList extends React.Component{
       onChange: (current) => this.changePage(current),
     };
     return (
-      <ConfigProvider locale={zhCN}>
+      <>
         <Form layout="inline" className="search-bar">
           <Form.Item>
             <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} onPressEnter={this.handleSearch.bind(this)} />
@@ -219,7 +218,7 @@ class StaffList extends React.Component{
           size="small" 
           loading={this.state.loading}
           pagination={paginationProps}
-          scroll={{ y: 738 }}
+          scroll={{ y: 718 }}
         />
         {
           this.state.modalVisible && 
@@ -227,7 +226,7 @@ class StaffList extends React.Component{
             <StaffEdit title="传值" id={this.state.modalCurrentId} onOk={this.handleOk} />
           </Modal>
         }
-      </ConfigProvider>
+      </>
     )
   }
 }

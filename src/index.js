@@ -7,16 +7,18 @@ import Layout from './layout';
 import {Provider} from 'react-redux';
 import store from './store/reducers';    // redux-thunk
 // import store from './storeSaga/reducers';    // redux-saga
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
 import * as serviceWorker from './serviceWorker';
 // import { ConfigProvider } from 'antd';
 
 function App(){
   return (
-    <>
+    <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Layout />
       </Provider>
-    </>
+    </ConfigProvider>
   )
 }
 

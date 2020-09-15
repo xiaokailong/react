@@ -15,10 +15,15 @@ import MainLayout from './MainLayout'
 // const whiteList = ['/login', '/user']
 class Layout extends React.Component{
   render() {
+    // const theme = Boolean(sessionStorage["token"]) ? 'pages': 'login' 
+    const theme = 'pages' 
+    const themeMap = {
+      pages: <MainLayout content={<DefaultLayout />} />,
+      login: <DefaultLayout />,
+    }
     return (
       <Router>
-        <MainLayout content={<DefaultLayout />} />
-        {/* <DefaultLayout /> */}
+        {themeMap[theme]}
       </Router>
     )
   }

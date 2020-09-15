@@ -1,11 +1,12 @@
 
-import React from "react";
+import React,{Component} from "react";
 import TableWrap from "@/components/Hoc/TableWrap";
 import { enums } from '@/utils/assist'
 import { relativeTime } from '@/utils/dayjs'
 import { Button, Table, Tooltip, Tag, Switch, Popconfirm, Form, Input, Modal } from 'antd';
+import RoleSelect from '@/components/RoleSelect'
 import StaffEdit from './StaffEdit';
-import EventBus from '@/services/EventBus'
+import EventBus from '@/services/EventBus';
 import {
   getAuthAuthUser,
   putAuthLockById,
@@ -16,7 +17,7 @@ const AjaxData = (page, search) => {
   return getAuthAuthUser({...page, ...search}).then(res=>res.authuser_list);
 }
 
-class ProjectList extends React.Component {
+class ProjectList extends Component {
   constructor(){
     super();
     this.state={
@@ -26,7 +27,8 @@ class ProjectList extends React.Component {
     };
     this.query={
       name: '',
-      account: ''
+      account: '',
+      rids: [],
     };
   }
   // 查询
@@ -77,6 +79,11 @@ class ProjectList extends React.Component {
       modalVisible: false,
     });
   };
+  // 搜索栏-角色下拉切换
+  handleRoleSelect(val){
+    this.query.rids=val ? val : [];
+    this.handleSearch();
+  }
   // 列表锁写/解锁
   async handleStatusChange(status, item, checked) {
     try {
@@ -173,6 +180,9 @@ class ProjectList extends React.Component {
     return (
       <>
         <Form layout="inline" className="search-bar">
+          <Form.Item>
+            <RoleSelect onChange={this.handleRoleSelect.bind(this)} />
+          </Form.Item>
           <Form.Item>
             <Input placeholder="员工姓名" allowClear onChange={(e)=>{this.query.name = e.target.value}} onPressEnter={this.handleSearch.bind(this)} />
           </Form.Item>

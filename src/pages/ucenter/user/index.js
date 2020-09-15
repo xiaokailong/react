@@ -15,6 +15,7 @@ class UcenterUser extends React.Component {
     this.props.history.replace(config.path+"login");
   }
   render() {
+    console.log(this.props.state);
     return (
       <div>
         <div>用户名：{this.props.state.user.username}</div>

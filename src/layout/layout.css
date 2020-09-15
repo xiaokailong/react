@@ -1,0 +1,38 @@
+.site-header {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.site-header-right {
+  display: flex;
+  float: right;
+  height: 100%;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.site-header-right-action {
+  cursor: pointer;
+}
+
+.site-header-right-action .action-link {
+  padding: 0 10px;
+  display: inline-block;
+  margin-right: 0;
+}
+
+.site-header-right-action:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.site-header-right-action .header-avatar {
+  vertical-align: -6px;
+  margin-right: 4px;
+}

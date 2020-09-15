@@ -119,6 +119,15 @@ h1 {
   margin: 16px;
 }
 
+.ant-layout-header {
+  height: 48px !important;
+  line-height: 48px !important;
+}
+
+.ant-menu-inline {
+  border-right: 0 !important;
+}
+
 .site-layout .site-layout-background, .site-sider {
   background: #fff;
 }

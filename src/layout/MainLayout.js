@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
-import TheMenu from '@/components/TheMenu'
+import TheMenu from './TheMenu'
+import TheHeader from './TheHeader'
 // import {
 //   MenuUnfoldOutlined,
 //   MenuFoldOutlined,
@@ -34,10 +35,7 @@ class MainLayout extends React.Component{
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            {/* {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: this.toggle,
-            })} */}
+            <TheHeader />
           </Header>
           <Content
             className="site-layout-background"

@@ -161,7 +161,7 @@ class ProjectList extends Component {
       {
         title: '操作',
         align: 'right',
-        render: (text,render) => <>
+        render: (_, render) => <>
           <Button type="link" onClick={this.handleEdit.bind(this, render)}>编辑</Button>
           <Popconfirm
             placement="bottomRight"

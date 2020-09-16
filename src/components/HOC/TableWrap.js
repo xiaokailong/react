@@ -37,6 +37,9 @@ const TableWrap = (TableComponent, AjaxData) =>
 
     componentDidMount() {
     }
+    componentWillUnmount() {
+
+    }
 
     /**
      * 对外调用--设置搜索参数然后查询

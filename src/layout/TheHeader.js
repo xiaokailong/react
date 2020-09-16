@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import Css from './layout.css'
 
-import { Menu, Dropdown, Avatar, Tooltip } from 'antd';
+import { Menu, Dropdown, Avatar, Tooltip, Badge } from 'antd';
 
 const menu = (
   <Menu>
@@ -25,7 +25,6 @@ const menu = (
   </Menu>
 );
 
-
 class TheHeader extends Component{
   constructor(props) {
     super(props);
@@ -39,16 +38,18 @@ class TheHeader extends Component{
     return (
       <div className={Css['site-header']}>
         <div className={Css['site-header-right']}>
-          <span className={Css['site-header-right-action']}>
-            <Tooltip placement="bottom" title="帮助中心">
+          <Tooltip placement="bottom" title="帮助中心">
+            <span className={Css['site-header-right-action']}>
               <i className={Css['action-link'] + ' iconfont icon-bangzhu'}></i>
-            </Tooltip>
-          </span>
-          <span className={Css['site-header-right-action']}>
-            <Tooltip placement="bottom" title="消息通知">
-              <i className={Css['action-link'] + ' iconfont icon-lingdang'}></i>
-            </Tooltip>
-          </span>
+            </span>
+          </Tooltip>
+          <Tooltip placement="bottom" title="消息通知">
+            <span className={Css['site-header-right-action']}>
+              <Badge size="small" count={5} offset={[-10, 0]}>
+                <i className={Css['action-link'] + ' iconfont icon-lingdang'}></i>
+              </Badge>
+            </span>
+          </Tooltip>
           <span className={Css['site-header-right-action']}>
             <Dropdown overlay={menu} placement="bottomRight">
               <div className={Css["action-link"]} onClick={e => e.preventDefault()}>

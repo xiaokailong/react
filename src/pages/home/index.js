@@ -4,6 +4,10 @@ import CounterComponent from '@/components/counter';
 import actions from '@/store/actions';    // redux-thunk
 // import actions from '@/storeSaga/actions';    // redux-saga
 import { Button } from 'antd';
+import AppContext from '@/context'
+
+import Test1 from '@/components/contextTest/test1';
+import Test2 from '@/components/contextTest/test2';
 
 class HomeIndex extends React.Component{
   constructor() {
@@ -49,6 +53,10 @@ class HomeIndex extends React.Component{
   render() {
     return (
       <div>
+        <AppContext.Provider value={{aaa: 124124124124}}>
+          <Test1 />
+          <Test2 />
+        </AppContext.Provider>
         <CounterComponent></CounterComponent>
         计数器:<Button type="primary" onClick={this.decCount.bind(this)}>-</Button> {this.props.state.home.count} <Button type="primary" onClick={this.incCount.bind(this)}>+</Button>
       </div>

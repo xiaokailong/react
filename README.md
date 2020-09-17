@@ -1,10 +1,7 @@
 ### todo List：
-#### 1.路由模块化（重定向）
-#### 2.页面模板
-#### 3.面包屑  react-router-redux?
-#### 4.路由可否用EventBus实现  react-router-redux?
-#### 5.表格自适应高度
-#### 6.hooks
+#### 1.面包屑  react-router-redux?
+#### 2.路由可否用EventBus实现  react-router-redux?
+#### 3.表格自适应高度
 
 
 

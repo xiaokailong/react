@@ -1,20 +1,15 @@
-import { lazy } from "react";
+import asyncComponent from '@/components/async/AsyncComponent';
 
 const homeRouter = [
   {
-    path: "/", 
-    component: lazy(() => import("@/pages/home")),
+    path: "/home", 
+    component: asyncComponent(() => import("@/pages/home")),
     title: '首页',
-    exact: true,
-  },
-  {
-    path: "/login",
-    component: lazy(() => import("@/pages/login")),
-    title: "登录",
+    auth: true,
   },
   {
     path: "/test/staff",
-    component: lazy(() => import("@/pages/test/staff")),
+    component: asyncComponent(() => import("@/pages/test/staff")),
     title: "员工列表",
     auth: true,
   },

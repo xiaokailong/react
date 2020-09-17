@@ -1,14 +1,14 @@
-import { lazy } from "react";
+import asyncComponent from '@/components/async/AsyncComponent';
 
 const newsRouter = [
   {
     path: "/news/list",
-    component: lazy(() => import("@/pages/test/news")),
+    component: asyncComponent(() => import("@/pages/test/news")),
     title: "新闻列表",
   },
   {
     path: '/news/details',
-    component: lazy(() => import("@/pages/test/news/details")),
+    component: asyncComponent(() => import("@/pages/test/news/details")),
     title: "新闻详细",
   },
 ]

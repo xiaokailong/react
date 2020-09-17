@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './assets/css/index.css';
 import './event-bus' // load events
-import Layout from './layout';
+import App from './App';
 import {Provider} from 'react-redux';
 import store from './store/reducers';    // redux-thunk
 // import store from './storeSaga/reducers';    // redux-saga
@@ -12,11 +12,11 @@ import zhCN from 'antd/es/locale/zh_CN';  // 引入中文包
 import * as serviceWorker from './serviceWorker';
 // import { ConfigProvider } from 'antd';
 
-function App(){
+function Root(){
   return (
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
-        <Layout />
+        <App />
       </Provider>
     </ConfigProvider>
   )
@@ -25,7 +25,7 @@ function App(){
 ReactDOM.render(
   // <React.StrictMode>
   // </React.StrictMode>
-  <App />,
+  <Root />,
   document.getElementById('root')
 );
 

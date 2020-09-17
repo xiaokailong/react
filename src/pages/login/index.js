@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
     this.props.dispatch((dispatch,getState)=>{
       dispatch(actions.user.login({account:this.state.username,password:this.state.password,success:(res)=>{
         if (res.data.code === 100000){
-          this.props.history.go(-1);
+          this.props.history.push('/');
         }
       }}))
     })
@@ -63,7 +63,7 @@ class LoginPage extends React.Component {
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" onChange={(e)=>{this.setState({username: e.target.value})}} />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="admin" onChange={(e)=>{this.setState({username: e.target.value})}} />
           </Form.Item>
           <Form.Item
             name="password"
@@ -77,7 +77,7 @@ class LoginPage extends React.Component {
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="密码"
+              placeholder="666666"
               onChange={(e)=>{this.setState({password: e.target.value})}}
             />
           </Form.Item>

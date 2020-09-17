@@ -1,107 +1,36 @@
-import React, {lazy, Suspense} from "react";
-import ReactDom from "react-dom";
-import "./App.css";
-import MyButton from "./components/MyButton";
-import Toast from "./components/Toast"
-import Confirm from "./components/Confirm/confirm.js"
-// import HeaderComponent from "./components/HeaderComponent";
-// 组件懒加载
-const HeaderComponent = lazy(()=>import("./components/HeaderComponent"));
-
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      bShow: true,
-      student: [
-        { name: "张三", age: 18 },
-        { name: "李四", age: 28 },
-        { name: "王五", age: 38 },
-      ],
-      headerShow: false,
-      name: ''
-    };
-  }
-  componentDidMount() {
-    let dom = ReactDom.findDOMNode(document.getElementById("ab"));
-    console.log(dom.innerHTML);
-  }
-  changeBoxShow() {
-    this.setState({ bShow: !this.state.bShow }, () => {
-      console.log(11);
-    });
-  }
-  mouseMove(e, arg) {
-    console.log(e.pageX, arg);
-  }
-  getChilerenData(val,val2){
-    console.log(val,val2);
-  }
-  submitBtn (val) {
-    console.log(val,'!#@!@$@');
-  }
-  showHeaderComp(){
-    this.setState({
-      showHeaderComp: true,
-    })
-  }
-  nameLogin(){
-    if(this.state.name.match(/^\s*$/)){
-      Toast({
-        txt: '请输入用户名',
-        duration: 2000,
-        onClose: ()=> {
-          console.log('toast已关闭!');
-        }
-      })
-    }
-  }
+/*
+HashRouter:有#号
+BrowserRouter:没有#号
+Route：设置路由与组件关联
+Switch:只要匹配到一个地址不往下匹配，相当于for循环里面的break
+Link:跳转页面，相当于vue里面的router-link
+exact :完全匹配路由
+Redirect:路由重定向
+*/
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import asyncComponent from '@/components/async/AsyncComponent';
+// const whiteList = ['/login', '/user']
+class App extends React.Component{
   render() {
-    let name = "11124124124";
-    let htmlContent = "<span style='color: blue;'>我是红色的字</span>";
+    // const theme = Boolean(sessionStorage["token"]) ? 'pages': 'login' 
+    // const theme = 'pages' 
+    // const themeMap = {
+    //   pages: <MainLayout content={<DefaultLayout />} />,
+    //   login: <DefaultLayout />,
+    // }
     return (
-      <div className="App">
-        <MyButton style={{width: "200px", fontSize: "20px"}} className="redButton" onClick={this.submitBtn}>提交</MyButton>
-        <button type="button" onClick={this.showHeaderComp.bind(this)}>显示/隐藏Header组件</button>
-        {
-          this.state.showHeaderComp && 
-          <Suspense fallback={<></>}>
-            <HeaderComponent title="首页1" saveClick={(val)=>this.getChilerenData(val,'abced')} />
-          </Suspense>
-        }
-        {/* jsx里面的注释 */}
-        <div id="ab" style={{ fontSize: "30px" }}>
-          {name}
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
-        <button type="button" onClick={this.changeBoxShow.bind(this)}>
-          显示/隐藏
-        </button>
-        {this.state.bShow && (
-          <div
-            className="box"
-            onMouseMove={(e) => {
-              this.mouseMove(e, "move");
-            }}
-          ></div>
-        )}
-        <ul>
-          {this.state.student.map((item, index) => {
-            return (
-              <li key={index}>
-                {index}:{item.name}
-                {item.age}
-              </li>
-            );
-          })}
-        </ul>
-        {/* <Confirm /> */}
-        <div>
-          请输入用户名：<input type="text" value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}} />
-          <button type="button" onClick={this.nameLogin.bind(this)}>登录</button>
-        </div>
-      </div>
-    );
+      <Router>
+        {/* {themeMap[theme]} */}
+        <Switch>
+            <Route path='/' exact render={() => <Redirect to='/home' />} />
+            <Route path='/login' component={asyncComponent(() => import("@/pages/login"))} />
+            <Route path='/404' component={asyncComponent(() => import("@/pages/error/404"))} />
+            {/* <Route path='/home' component={lazy(() => import("@/pages/home"))} /> */}
+            <Route component={asyncComponent(() => import("@/layout"))} />
+        </Switch>
+      </Router>
+    )
   }
 }
 

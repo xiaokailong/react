@@ -32,7 +32,7 @@ class DefaultLayout extends React.Component{
               }
             })
           }
-          {/* <Redirect to={routers[0].path}></Redirect> */}
+          <Redirect to='/404'></Redirect>
         </Suspense>
       </Switch>
     )

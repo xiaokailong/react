@@ -2,6 +2,7 @@
 #### 1.面包屑  react-router-redux?
 #### 2.路由可否用EventBus实现  react-router-redux?
 #### 3.表格自适应高度
+#### 4.导航数据重复显示的bug
 
 
 

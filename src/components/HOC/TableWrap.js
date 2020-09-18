@@ -48,12 +48,13 @@ const TableWrap = (TableComponent, AjaxData) =>
      * @param {boolean} [useOldParams=false] 是否使用原来的参数查询
      */
     setSearchParams = (searchParams) => {
+      const { pagination } = this.state;
       this.setState(
         {
           searchParams
         },
         () => {
-          this.searchBaseLand(1);
+          this.searchBaseLand(pagination.current);
         }
       );
     };

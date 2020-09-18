@@ -15,20 +15,21 @@ class TheMenu extends Component{
       mode: "inline",
       data: [],
     };
+    this.mockData = []
   }
   componentDidMount(){
     this.getData();
   }
+  componentWillUnmount(){
+    this.mockData = []
+    this.setState({data: []})
+  }
   async getData(){
     // const {menu_list} = await getMenuList()
     // const data = jsonTree(menu_list,{pid: 'parent_id'})
-    const data = jsonTree(MenuMockData,{pid: 'parent_id'})
+    this.mockData = await jsonTree(MenuMockData,{pid: 'parent_id'})
     // this.setState({data})
-    this.setState((state)=>{
-      return {
-        data
-      }
-    })
+    this.setState({data: this.mockData})
   }
   handleClick = e => {
     this.setState({

@@ -16,6 +16,7 @@ class HomeIndex extends React.Component{
     this.num = 0;
   }
   componentDidMount(){
+    // console.log(this.props.state,'@@@@@@@@@@@@@@@@@@@@@@');
   }
   incCount () {
     // redux-thunk  写法

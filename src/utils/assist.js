@@ -675,7 +675,6 @@ export const jsonTree = (
       if (!parent[children]) {
         parent[children] = [];
       }
-      v.__parent__ = parent;
       parent[children].push(v);
     } else {
       treeData.push(v);

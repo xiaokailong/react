@@ -3,9 +3,7 @@
 #### 2.路由可否用EventBus实现  react-router-redux?
 #### 3.表格自适应高度
 #### 4.导航数据重复显示的bug
-# react-admin([尝试一下在线编辑](https://codesandbox.io/s/react-admin-u9kdb))
-
-Fam React Pro
+# Fan React Pro
 
 ### 前言
 
@@ -13,6 +11,33 @@ Fam React Pro
 
 -   [GitHub 地址](https://github.com/yezihaohao/react-admin)
 -   [预览地址]
+
+
+### 安装运行
+
+##### 1.克隆项目源码
+
+```js
+git clone https://github.com/xiaokailong/react.git;
+```
+
+##### 2.npm 安装依赖
+
+```js
+npm install
+```
+
+##### 3.启动项目
+
+```js
+npm run start
+```
+
+##### 4.打包项目
+
+```js
+npm run build
+```
 
 ### 依赖模块
 
@@ -107,35 +132,6 @@ Fam React Pro
 --- .env                                    ---启动项目自定义端口配置文件
 --- .eslintrc                               ---自定义eslint配置文件，包括增加的react jsx语法限制
 --- package.json
-```
-
-### 安装运行
-
-##### 1.下载或克隆项目源码
-
-```js
-git clone https://github.com/xiaokailong/react.git;
-```
-
-
-##### 2.npm 安装依赖(国内建议增加淘宝镜像源，不然很慢，你懂的 😁)
-
-> 有些老铁遇到运行时报错，首先确定下是不是最新稳定版的 nodejs 和 npm，或者使用 cnpm
-
-```js
-npm install;
-```
-
-##### 3.启动项目
-
-```js
-npm run start
-```
-
-##### 4.打包项目
-
-```js
-npm run build
 ```
 
 ### License

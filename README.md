@@ -7,10 +7,9 @@
 
 ### 前言
 
-> 网上 react 后台管理开源免费的完整版项目比较少，所以利用空余时间集成了一个版本出来，已放到 GitHub
+> 本人之前一直是做Vue开发，最近一直在学习react，搭建了一套适合做企业后台管理系统的react前端框架，也是边学边做，希望能够与君共勉。
 
--   [GitHub 地址](https://github.com/yezihaohao/react-admin)
--   [预览地址]
+-   [GitHub 地址](https://github.com/xiaokailong/react.git)
 
 
 ### 安装运行
